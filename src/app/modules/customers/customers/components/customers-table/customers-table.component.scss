@@ -1,18 +1,43 @@
 @import "../../../../../variables.scss";
 
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+::ng-deep
+  .mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-line-ripple::before {
+  border-bottom-color: #{$color-brand-secondary-medium};
+}
+
+::ng-deep
+  .mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-line-ripple::after {
+  border-bottom-color: #{$color-brand-secondary-medium};
+}
+
 ::ng-deep .mdc-checkbox__background {
   border-radius: 25% !important;
 }
 
-::ng-deep .mat-mdc-checkbox.mat-accent .mdc-checkbox--selected~.mdc-checkbox__ripple {
+::ng-deep
+  .mat-mdc-checkbox.mat-accent
+  .mdc-checkbox--selected
+  ~ .mdc-checkbox__ripple {
   background: #{$color-brand-secondary-medium};
 }
 
-.mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8 {
-  box-shadow: none;
-}
-
-.mdc-data-table__cell{
+.mdc-data-table__cell {
   border: none;
 }
 .mdc-data-table__cell:nth-child(1) {
@@ -22,7 +47,7 @@
 .mdc-data-table__cell:last-child {
   border: none;
   border-radius: 0px 100px 100px 0px;
-  text-align: left
+  text-align: left;
 }
 
 /* Estilos alternados para cada linha */
@@ -31,7 +56,7 @@
 }
 
 ::ng-deep .mat-mdc-table .mat-mdc-row:nth-child(even) {
-  background-color: #F7F7F7; /* Cor de fundo para linhas pares */
+  background-color: #f7f7f7; /* Cor de fundo para linhas pares */
 }
 
 .mat-mdc-header-row {
@@ -85,4 +110,18 @@
 
 .mat-mdc-cell {
   font-weight: #{$font-weight-bold};
+}
+
+.trash-button {
+  display: flex;
+  place-items: center;
+  background-color: #fad1d8;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  border: none;
+
+  .mat-icon {
+    color: #e6173e;
+  }
 }

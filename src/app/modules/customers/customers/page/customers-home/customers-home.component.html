@@ -1,1 +1,5 @@
-<app-customers-table [contentTableData]="customerDatas" *ngIf="customerDatas.length > 0"></app-customers-table>
+<app-customers-table
+  *ngIf="customerDatas.length > 0"
+  [contentTableData]="customerDatas"
+  (deleteCustomerEvent)="handleDeleteCustomerAction($event); openDialog()"
+></app-customers-table>
