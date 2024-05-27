@@ -9,15 +9,26 @@ import { CustomersTableComponent } from './customers/components/customers-table/
 
 import { MatTableModule } from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatIconModule} from '@angular/material/icon'
+import {MatDialogModule} from '@angular/material/dialog';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [CreateCustomerComponent, CustomersHomeComponent, CustomersTableComponent],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(CUSTOMERS_ROUTES),
     // Material
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatIconModule,
   ],
 })
 export class CustomersModule {}

@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomersService } from './services/customers/customers.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { CustomersService } from './services/customers/customers.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    SharedModule
   ],
   providers: [CustomersService],
   bootstrap: [AppComponent],

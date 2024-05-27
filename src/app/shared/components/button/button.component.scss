@@ -1,0 +1,60 @@
+@import "../../../variables.scss";
+
+.btn {
+  width: 146px;
+  height: 40px;
+  padding: 8px 16px 8px 16px;
+  border-radius: 20px;
+  border: none;
+  font-family: #{$font-family-base};
+  font-size: #{$font-size-base};
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &-primary {
+    background-color: #{$color-brand-primary-dark};
+    color: #f5f5f5;
+    border: none;
+
+    &:hover {
+      background-color: #{$color-brand-primary-light};
+    }
+
+    &:focus {
+      background-color: #{$color-brand-primary-medium};
+    }
+
+    &:active {
+      background-color: #{$color-brand-primary-darkest};
+    }
+
+    &:disabled {
+      background-color: #{$color-neutral-lightest};
+      color: #{$color-neutral-medium};
+    }
+  }
+
+  &-danger {
+    background-color: #{$color-feedback-danger-dark};
+    color: #f5f5f5;
+    border: none;
+
+    &:hover {
+      background-color: #{$color-feedback-danger-light};
+    }
+
+    &:focus {
+      background-color: #{$color-feedback-danger-light};
+    }
+
+    &:active {
+      background-color: #{$color-feedback-danger-darkest};
+    }
+
+    &:disabled {
+      background-color: #{$color-neutral-lightest};
+      color: #{$color-neutral-medium};
+    }
+  }
+}
