@@ -1,0 +1,16 @@
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  & h1 {
+    align-self: center;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 50px;
+}
