@@ -5,8 +5,19 @@ import { CustomersHomeComponent } from './customers/page/customers-home/customer
 import { CUSTOMERS_ROUTES } from './customers/customer.routing';
 import { RouterModule } from '@angular/router';
 
+import { CustomersTableComponent } from './customers/components/customers-table/customers-table.component';
+
+import { MatTableModule } from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 @NgModule({
-  declarations: [CreateCustomerComponent, CustomersHomeComponent],
-  imports: [CommonModule, RouterModule.forChild(CUSTOMERS_ROUTES)],
+  declarations: [CreateCustomerComponent, CustomersHomeComponent, CustomersTableComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(CUSTOMERS_ROUTES),
+    // Material
+    MatTableModule,
+    MatCheckboxModule
+  ],
 })
 export class CustomersModule {}

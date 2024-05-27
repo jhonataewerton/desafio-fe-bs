@@ -1,4 +1,4 @@
-export interface GetAllCustomersResponse {
+export interface Customers {
   position: string;
   id: string;
   clientName: string;

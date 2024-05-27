@@ -1,0 +1,88 @@
+@import "../../../../../variables.scss";
+
+::ng-deep .mdc-checkbox__background {
+  border-radius: 25% !important;
+}
+
+::ng-deep .mat-mdc-checkbox.mat-accent .mdc-checkbox--selected~.mdc-checkbox__ripple {
+  background: #{$color-brand-secondary-medium};
+}
+
+.mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+.mdc-data-table__cell{
+  border: none;
+}
+.mdc-data-table__cell:nth-child(1) {
+  border: none;
+  border-radius: 100px 0px 0px 100px;
+}
+.mdc-data-table__cell:last-child {
+  border: none;
+  border-radius: 0px 100px 100px 0px;
+  text-align: left
+}
+
+/* Estilos alternados para cada linha */
+::ng-deep .mat-mdc-table .mat-mdc-row:nth-child(odd) {
+  background-color: #ffffff; /* Cor de fundo para linhas ímpares */
+}
+
+::ng-deep .mat-mdc-table .mat-mdc-row:nth-child(even) {
+  background-color: #F7F7F7; /* Cor de fundo para linhas pares */
+}
+
+.mat-mdc-header-row {
+  background-color: #{$color-brand-primary-light};
+  white-space: nowrap;
+}
+
+.mat-mdc-header-cell {
+  color: #ffffff !important;
+  text-align: -webkit-center;
+}
+
+.mat-mdc-header-cell:last-child {
+  color: #ffffff !important;
+  border-radius: 0 0 100px 0;
+  text-align: -webkit-center;
+}
+
+.mat-mdc-header-cell:nth-child(1) {
+  color: #ffffff !important;
+  border-radius: 100px 0 0 100px;
+  text-align: -webkit-center;
+}
+
+.mat-mdc-checkbox {
+  --mdc-checkbox-selected-checkmark-color: #fff;
+  --mdc-checkbox-selected-focus-icon-color: #{$color-brand-secondary-medium};
+  --mdc-checkbox-selected-hover-icon-color: #{$color-brand-secondary-medium};
+  --mdc-checkbox-selected-icon-color: #{$color-brand-secondary-medium};
+  --mdc-checkbox-selected-pressed-icon-color: #{$color-brand-secondary-medium};
+  --mdc-checkbox-unselected-focus-icon-color: #{$color-brand-secondary-medium};
+  --mdc-checkbox-unselected-hover-icon-color: #{$color-brand-secondary-medium};
+  --mdc-checkbox-disabled-selected-icon-color: #{$color-brand-secondary-medium};
+  --mdc-checkbox-disabled-unselected-icon-color: #{$color-brand-secondary-medium};
+  --mdc-checkbox-unselected-icon-color: #{$color-brand-secondary-medium};
+  --mdc-checkbox-unselected-pressed-icon-color: #{$color-brand-secondary-medium};
+}
+
+.mat-mdc-header-cell,
+.mat-mdc-cell,
+.mat-mdc-footer-cell {
+  font-family: #{$font-family-base};
+  font-size: #{$font-size-base};
+  color: #{$color-neutral-dark};
+  text-transform: uppercase;
+}
+
+.mat-mdc-header-cell {
+  font-weight: #{$font-weight-bold};
+}
+
+.mat-mdc-cell {
+  font-weight: #{$font-weight-bold};
+}

@@ -8,17 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomersService } from './services/customers/customers.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
-
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent, CustomersService]
+  providers: [CustomersService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
