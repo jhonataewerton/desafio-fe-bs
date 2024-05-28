@@ -1,5 +1,4 @@
 export interface GetAllCustomersResponse {
-  position: string;
   id: string;
   clientName: string;
   cpf: string;

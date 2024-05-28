@@ -1,5 +1,4 @@
 export interface Customers {
-  position: string;
   id: string;
   clientName: string;
   cpf: string;

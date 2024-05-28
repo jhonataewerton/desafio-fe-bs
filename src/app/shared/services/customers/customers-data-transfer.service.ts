@@ -3,7 +3,7 @@ import { BehaviorSubject, map, take } from 'rxjs';
 import { GetAllCustomersResponse } from 'src/app/models/customers/GetAllCustomersResponse';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CustomersDataTransferService {
   public customersDataEmiiter$ =
@@ -13,18 +13,18 @@ export class CustomersDataTransferService {
   setCustomerDatas(customerDatas: Array<GetAllCustomersResponse>): void {
     if (customerDatas) {
       this.customersDataEmiiter$.next(customerDatas);
+      console.log(customerDatas, 'ASDF');
     }
   }
 
   getCustomerDatas() {
-    this.customersDataEmiiter$
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            this.customerDatas = response;
-          }
-        },
-      });
+    this.customersDataEmiiter$.subscribe({
+      next: (response) => {
+        if (response) {
+          this.customerDatas = response;
+        }
+      },
+    });
     return this.customerDatas;
   }
 }

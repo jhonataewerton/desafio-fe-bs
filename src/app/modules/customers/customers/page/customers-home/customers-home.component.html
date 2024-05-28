@@ -1,5 +1,5 @@
 <app-customers-table
   *ngIf="customerDatas.length > 0"
   [contentTableData]="customerDatas"
-  (deleteCustomerEvent)="handleDeleteCustomerAction($event); openDialog()"
+  (deleteCustomerEvent)="handleDeleteCustomerAction($event)"
 ></app-customers-table>

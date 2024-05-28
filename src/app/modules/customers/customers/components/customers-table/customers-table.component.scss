@@ -14,6 +14,10 @@ th {
   width: 25%;
 }
 
+::ng-deep .mat-sort-header-arrow {
+  color: white;
+}
+
 ::ng-deep
   .mdc-text-field--filled:not(.mdc-text-field--disabled)
   .mdc-line-ripple::before {
@@ -115,13 +119,34 @@ th {
 .trash-button {
   display: flex;
   place-items: center;
-  background-color: #fad1d8;
+  background-color: #{$color-feedback-danger-lightest};
   width: 32px;
   height: 32px;
   border-radius: 100%;
   border: none;
+  cursor: pointer;
 
   .mat-icon {
-    color: #e6173e;
+    color: #{$color-feedback-danger-medium};
   }
+}
+
+.edit-button {
+  display: flex;
+  place-items: center;
+  background-color: #{$color-feedback-warning-lightest};
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+
+  .mat-icon {
+    color: #{$color-feedback-warning-darkest};
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
 }

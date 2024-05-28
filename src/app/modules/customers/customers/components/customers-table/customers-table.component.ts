@@ -3,11 +3,13 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
+  OnChanges,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Customers } from 'src/app/models/customers/Customers';
 
@@ -16,8 +18,13 @@ import { Customers } from 'src/app/models/customers/Customers';
   templateUrl: './customers-table.component.html',
   styleUrls: ['./customers-table.component.scss'],
 })
-export class CustomersTableComponent extends MatPaginatorIntl {
+export class CustomersTableComponent extends MatPaginatorIntl implements OnChanges {
+  constructor() {
+    super();
+  }
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   @Output() deleteCustomerEvent = new EventEmitter<any>();
   @Input() contentTableData!: Customers[];
@@ -40,8 +47,14 @@ export class CustomersTableComponent extends MatPaginatorIntl {
     this.dataSource = new MatTableDataSource<Customers>(this.contentTableData);
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['contentTableData']) {
+      this.dataSource.data = this.contentTableData;
+    }
+  }
+
   handleDeleteProduct(id: string): void {
-    console.log(id)
+    console.log(id);
     if (id) {
       this.deleteCustomerEvent.emit(id);
     }
@@ -54,5 +67,6 @@ export class CustomersTableComponent extends MatPaginatorIntl {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }

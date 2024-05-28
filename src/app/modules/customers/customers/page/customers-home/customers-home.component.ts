@@ -42,14 +42,29 @@ export class CustomersHomeComponent implements OnInit, OnDestroy {
   }
 
   handleDeleteCustomerAction(event: string): void {
-    console.log('PRODUTO DELETADO', event);
+    const dialogRef = this.dialog.open(DialogComponent, {
+      height: '286px',
+      width: '382px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 's') {
+        this.deleteCustomer(event);
+      }
+    });
   }
 
-  openDialog(): void {
-    this.dialog.open(DialogComponent, {
-      height: '286px',
-      width: '382px'
-    });
+  deleteCustomer(id: string) {
+    if (id) {
+      this.customersService
+        .deleteCustomer(id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (response) => {this.getAPICustomersDatas()},
+          error: (err) => {},
+        });
+
+    }
   }
 
   ngOnDestroy(): void {
