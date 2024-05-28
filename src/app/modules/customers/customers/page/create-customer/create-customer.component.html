@@ -1,77 +1,88 @@
 <div class="container">
-  <h1>CADASTRAR NOVO CLIENTE</h1>
+  <h1>{{customerEditData.isEdit ? 'EDITAR CLIENTE' : 'CADASTRAR NOVO CLIENTE'}}</h1>
   <form [formGroup]="createCustomerForm" #customerForm>
     <div class="customer-form">
-      <mat-form-field appearance="outline">
-        <mat-label>Nome e Sobrenome</mat-label>
-        <input
-          #clientName
-          matInput
-          type="text"
-          placeholder="Placeholder"
-          formControlName="clientName"
-        />
-        <mat-error *ngIf="!createCustomerForm.hasError('required')">
+      <div class="form-group">
+        <label>Nome e Sobrenome:</label>
+        <input #clientName matInput type="text" formControlName="clientName" />
+        <mat-error
+          *ngIf="
+            createCustomerForm.get('clientName')!.invalid &&
+            (createCustomerForm.get('clientName')!.touched ||
+              createCustomerForm.get('clientName')!.dirty)
+          "
+        >
           Por favor insira nome e sobrenome.
         </mat-error>
-      </mat-form-field>
+      </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>CPF</mat-label>
+      <div class="form-group">
+        <label>CPF:</label>
         <input
           #cpf
           matInput
-          placeholder="Placeholder"
           mask="000.000.000-00"
           formControlName="cpf"
+          [readonly]="customerEditData.isEdit"
         />
-        <mat-hint></mat-hint>
-        <mat-error *ngIf="!createCustomerForm.hasError('required')">
+        <mat-error
+          *ngIf="
+            createCustomerForm.get('cpf')!.invalid &&
+            (createCustomerForm.get('cpf')!.touched ||
+              createCustomerForm.get('cpf')!.dirty)
+          "
+        >
           Por favor insira um CPF válido.
         </mat-error>
-      </mat-form-field>
+      </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Data nascimento</mat-label>
-        <input
-          type="date"
-          #birthDate
-          matInput
-          placeholder="Placeholder"
-          formControlName="birthDate"
-        />
-        <mat-error *ngIf="!createCustomerForm.hasError('required')">
+      <div class="form-group">
+        <label>Data nascimento:</label>
+        <input type="date" #birthDate matInput formControlName="birthDate" />
+        <mat-error
+          *ngIf="
+            createCustomerForm.get('birthDate')!.invalid &&
+            (createCustomerForm.get('birthDate')!.touched ||
+              createCustomerForm.get('birthDate')!.dirty)
+          "
+        >
           Só é permitido cadastro para idades entre maior que 18 e menor que 60.
         </mat-error>
-      </mat-form-field>
+      </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Renda mensal</mat-label>
+      <div class="form-group">
+        <label>Renda mensal:</label>
         <input
           currencyMask
           [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
           #monthlyIncome
           matInput
-          placeholder="Placeholder"
           formControlName="monthlyIncome"
         />
-        <mat-error *ngIf="!createCustomerForm.hasError('required')">
+        <mat-error
+          *ngIf="
+            createCustomerForm.get('monthlyIncome')!.invalid &&
+            (createCustomerForm.get('monthlyIncome')!.touched ||
+              createCustomerForm.get('monthlyIncome')!.dirty)
+          "
+        >
           Por favor insira uma renda mensal maior que R$ 10,00.
         </mat-error>
-      </mat-form-field>
+      </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input
-          #email
-          matInput
-          placeholder="Placeholder"
-          formControlName="email"
-        />
-        <mat-error *ngIf="!createCustomerForm.hasError('required')">
+      <div class="form-group">
+        <label>Email:</label>
+        <input #email matInput formControlName="email" />
+        <mat-error
+          *ngIf="
+            createCustomerForm.get('email')!.invalid &&
+            (createCustomerForm.get('email')!.touched ||
+              createCustomerForm.get('email')!.dirty)
+          "
+        >
           Por favor insira um email válido.
         </mat-error>
-      </mat-form-field>
+      </div>
     </div>
   </form>
 
@@ -86,10 +97,10 @@
 
     <app-button
       [disabled]="!this.createCustomerForm.valid"
-      (click)="onSubmitCreateCustomerForm()"
+      (click)="customerEditData.isEdit ? onSubmitEditCustomerFrom() : onSubmitCreateCustomerForm()"
       mat-dialog-close="n"
       cdkFocusInitial
-      textContent="Salvar"
+      textContent="{{customerEditData.isEdit ? 'Editar' : 'Salvar'}}"
       class="btn btn-primary"
     ></app-button>
   </div>

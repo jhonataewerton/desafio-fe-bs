@@ -12,13 +12,17 @@ import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Customers } from 'src/app/models/customers/Customers';
+import { EditCustomer } from 'src/app/models/customers/EditCustomer';
 
 @Component({
   selector: 'app-customers-table',
   templateUrl: './customers-table.component.html',
   styleUrls: ['./customers-table.component.scss'],
 })
-export class CustomersTableComponent extends MatPaginatorIntl implements OnChanges {
+export class CustomersTableComponent
+  extends MatPaginatorIntl
+  implements OnChanges
+{
   constructor() {
     super();
   }
@@ -27,6 +31,7 @@ export class CustomersTableComponent extends MatPaginatorIntl implements OnChang
   @ViewChild(MatSort) sort!: MatSort;
 
   @Output() deleteCustomerEvent = new EventEmitter<any>();
+  @Output() editCustomerEvent = new EventEmitter<any>();
   @Input() contentTableData!: Customers[];
 
   dataSource = new MatTableDataSource<Customers>();
@@ -43,7 +48,6 @@ export class CustomersTableComponent extends MatPaginatorIntl implements OnChang
   selection = new SelectionModel<Customers>(true, []);
 
   ngOnInit(): void {
-    console.log(this.contentTableData);
     this.dataSource = new MatTableDataSource<Customers>(this.contentTableData);
   }
 
@@ -54,9 +58,14 @@ export class CustomersTableComponent extends MatPaginatorIntl implements OnChang
   }
 
   handleDeleteProduct(id: string): void {
-    console.log(id);
     if (id) {
       this.deleteCustomerEvent.emit(id);
+    }
+  }
+
+  handleEditProduct(customer: EditCustomer) {
+    if (customer) {
+      this.editCustomerEvent.emit(customer);
     }
   }
 

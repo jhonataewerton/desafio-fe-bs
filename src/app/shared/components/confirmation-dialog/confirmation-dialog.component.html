@@ -1,0 +1,21 @@
+<div class="dialog-container">
+  <img
+    src="{{
+      isError
+        ? '../../../../assets/circle-alert.png'
+        : '../../../../assets/circle-tick.png '
+    }}"
+    width="57px"
+    height="57px"
+  />
+  <span class="tittle">{{ text }}</span>
+  <div class="actions">
+    <app-button
+      mat-dialog-close="n"
+      cdkFocusInitial
+      textContent="OK"
+      class="btn btn-primary"
+      [disabled]="false"
+    ></app-button>
+  </div>
+</div>

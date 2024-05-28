@@ -22,6 +22,16 @@ export class CustomersService {
     );
   }
 
+  editCustomer(
+    customer: Customers,
+    id: string
+  ): Observable<Array<GetAllCustomersResponse>> {
+    return this.http.put<Array<GetAllCustomersResponse>>(
+      `${this.API_URL}/customers/${id}`,
+      customer
+    );
+  }
+
   getAllCustomers(): Observable<Array<GetAllCustomersResponse>> {
     return this.http.get<Array<GetAllCustomersResponse>>(
       `${this.API_URL}/customers`

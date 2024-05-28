@@ -1,3 +1,4 @@
+@import '../src/app/variables.scss';
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
@@ -9,4 +10,41 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-left: auto;
   box-sizing: border-box;
   padding: 0px 100px 100px 100px;
+}
+
+
+// Global Input config
+
+
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+input {
+  width: 300px;
+  height:  58px;
+  padding: 6px 14px 0px 14px;
+  border: 2px solid #{$color-neutral-lightest} !important;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input+ label {
+  top: 8px;
+  left: 4px;
+}
+
+
+label {
+  position: absolute;
+  margin-left: 10px;
+  font-family: #{$font-family-base};
+  color: #{$color-brand-primary-medium} !important;
+  font-weight: 800 !important;
+  font-size: 12px !important;
+  line-height: 15px !important;
 }

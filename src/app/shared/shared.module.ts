@@ -10,9 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { CpfPipe } from './pipes/cpf.pipe';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
-  declarations: [DialogComponent, ButtonComponent, ToolbarComponent, CpfPipe],
+  declarations: [DialogComponent, ButtonComponent, ToolbarComponent, CpfPipe, ConfirmationDialogComponent],
   imports: [
     CommonModule,
     MatDialogModule,

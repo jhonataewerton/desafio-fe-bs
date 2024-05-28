@@ -1,8 +1,13 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { Customers } from 'src/app/models/customers/Customers';
+import { EditCustomer } from 'src/app/models/customers/EditCustomer';
 import { CustomersService } from 'src/app/services/customers/customers.service';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { ageValidator } from 'src/app/shared/validators/ageValidator';
 import { cpfValidator } from 'src/app/shared/validators/cpfValidator';
 import { nameValidator } from 'src/app/shared/validators/nameValidator';
@@ -12,13 +17,14 @@ import { nameValidator } from 'src/app/shared/validators/nameValidator';
   templateUrl: './create-customer.component.html',
   styleUrls: ['./create-customer.component.scss'],
 })
-export class CreateCustomerComponent implements OnDestroy {
+export class CreateCustomerComponent implements OnDestroy, OnInit {
   private readonly destroy$: Subject<void> = new Subject();
+  customerEditData!: EditCustomer;
 
   public createCustomerForm = this.formBuilder.group({
     clientName: ['', [Validators.required, nameValidator()]],
     cpf: ['', [Validators.required, cpfValidator()]],
-    birthDate: [null, [Validators.required, ageValidator(18, 60)]],
+    birthDate: [new Date(), [Validators.required, ageValidator(18, 60)]],
     monthlyIncome: [0, [Validators.required, Validators.min(10)]],
     registrationDate: [new Date(), Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -27,8 +33,27 @@ export class CreateCustomerComponent implements OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private customerService: CustomersService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.customerEditData = params as EditCustomer;
+    });
+
+    if (this.customerEditData.isEdit) {
+      this.createCustomerForm.patchValue({
+        clientName: this.customerEditData.clientName,
+        cpf: this.customerEditData.cpf,
+        birthDate: this.customerEditData.birthDate,
+        monthlyIncome: this.customerEditData.monthlyIncome,
+        registrationDate: this.customerEditData.registrationDate,
+        email: this.customerEditData.email,
+      });
+    }
+  }
 
   onSubmitCreateCustomerForm(): void {
     if (this.createCustomerForm.value && this.createCustomerForm.valid) {
@@ -38,19 +63,57 @@ export class CreateCustomerComponent implements OnDestroy {
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: (response) => {
+            this.showConfirmationDialog(
+              'Cliente cadastrado com Sucesso!',
+              false
+            );
             this.router.navigate(['/customers']);
           },
           error: (err) => {
-            console.log(err);
+            this.showConfirmationDialog(
+              `'Erro ao cadastrar!'${err.message}`,
+              true
+            );
           },
         });
     }
   }
 
+  onSubmitEditCustomerFrom(): void {
+    this.customerService
+      .editCustomer(
+        this.createCustomerForm.value as any,
+        this.customerEditData.id
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          this.showConfirmationDialog('Cliente editado com Sucesso!', false);
+          this.router.navigate(['/customers']);
+        },
+        error: (err) => {
+          this.showConfirmationDialog(
+            `'Erro ao cadastrar!'${err.message}`,
+            true
+          );
+        },
+      });
+  }
+
+  showConfirmationDialog(message: string, isError: boolean) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      height: '286px',
+      width: '382px',
+      data: {
+        text: message,
+        isError: isError,
+      },
+    });
+  }
+
   clearCustomerForm(): void {
-    this.createCustomerForm.reset({
+    this.createCustomerForm.patchValue({
       clientName: '',
-      cpf: '',
       birthDate: null,
       registrationDate: new Date(),
       monthlyIncome: 0,

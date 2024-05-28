@@ -5,6 +5,9 @@ import { GetAllCustomersResponse } from 'src/app/models/customers/GetAllCustomer
 import { CustomersDataTransferService } from 'src/app/shared/services/customers/customers-data-transfer.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
+import { Customers } from 'src/app/models/customers/Customers';
+import { Router } from '@angular/router';
+import { EditCustomer } from 'src/app/models/customers/EditCustomer';
 
 @Component({
   selector: 'app-customers-home',
@@ -18,7 +21,8 @@ export class CustomersHomeComponent implements OnInit, OnDestroy {
   constructor(
     private customersService: CustomersService,
     private customersDtService: CustomersDataTransferService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -31,13 +35,10 @@ export class CustomersHomeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => {
-          console.log(response);
           this.customerDatas = response;
           this.customersDtService.setCustomerDatas(this.customerDatas);
         },
-        error: (err) => {
-          console.log(err);
-        },
+        error: (err) => {},
       });
   }
 
@@ -54,16 +55,23 @@ export class CustomersHomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  handleEditCustomerAction(event: EditCustomer): void {
+    this.router.navigate(['/customers/create-customer'], {
+      queryParams: { ...event, isEdit: true },
+    });
+  }
+
   deleteCustomer(id: string) {
     if (id) {
       this.customersService
         .deleteCustomer(id)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
-          next: (response) => {this.getAPICustomersDatas()},
+          next: (response) => {
+            this.getAPICustomersDatas();
+          },
           error: (err) => {},
         });
-
     }
   }
 

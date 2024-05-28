@@ -13,7 +13,6 @@ export class CustomersDataTransferService {
   setCustomerDatas(customerDatas: Array<GetAllCustomersResponse>): void {
     if (customerDatas) {
       this.customersDataEmiiter$.next(customerDatas);
-      console.log(customerDatas, 'ASDF');
     }
   }
 
