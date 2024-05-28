@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { ButtonComponent } from '../button/button.component';
 
 describe('ConfirmationDialogComponent', () => {
   let component: ConfirmationDialogComponent;
@@ -8,7 +10,11 @@ describe('ConfirmationDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfirmationDialogComponent ]
+      imports: [MatDialogModule, ],
+      declarations: [ ConfirmationDialogComponent, ButtonComponent ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} } // Fornecendo uma instância vazia de MAT_DIALOG_DATA
+      ]
     })
     .compileComponents();
 
@@ -20,4 +26,18 @@ describe('ConfirmationDialogComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set text and isError properties correctly', () => {
+    const testData = {
+      text: 'Test message',
+      isError: true
+    };
+
+    component.data = testData;
+    component.ngOnInit();
+
+    expect(component.text).toEqual(testData.text);
+    expect(component.isError).toEqual(testData.isError);
+  });
+
 });

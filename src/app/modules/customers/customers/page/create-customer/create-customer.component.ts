@@ -19,7 +19,16 @@ import { nameValidator } from 'src/app/shared/validators/nameValidator';
 })
 export class CreateCustomerComponent implements OnDestroy, OnInit {
   private readonly destroy$: Subject<void> = new Subject();
-  customerEditData!: EditCustomer;
+  customerEditData: EditCustomer = {
+    clientName: '',
+    birthDate: new Date(),
+    cpf: '',
+    email: '',
+    id: '',
+    isEdit: false,
+    monthlyIncome: 0,
+    registrationDate: new Date(),
+  };
 
   public createCustomerForm = this.formBuilder.group({
     clientName: ['', [Validators.required, nameValidator()]],
