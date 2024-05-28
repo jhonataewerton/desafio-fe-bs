@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomersService } from './services/customers/customers.service';
 import { SharedModule } from './shared/shared.module';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -15,7 +17,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
   ],
   providers: [CustomersService],
   bootstrap: [AppComponent],
