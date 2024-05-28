@@ -2,8 +2,8 @@ export interface Customers {
   id: string;
   clientName: string;
   cpf: string;
-  birthDate: string;
+  birthDate: Date;
   monthlyIncome: number;
-  registrationDate: string;
+  registrationDate: Date;
   email: string;
 }

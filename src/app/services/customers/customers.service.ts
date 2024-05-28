@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 import { Customers } from 'src/app/models/customers/Customers';
 import { GetAllCustomersResponse } from 'src/app/models/customers/GetAllCustomersResponse';

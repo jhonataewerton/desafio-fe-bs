@@ -10,21 +10,14 @@ import { CustomersTableComponent } from './customers/components/customers-table/
 
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {
-  MAT_FORM_FIELD_DEFAULT_OPTIONS,
-  MatFormFieldModule,
-} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatSortModule } from '@angular/material/sort';
 
-import {
-  NgxMaskDirective,
-  NgxMaskPipe,
-  provideNgxMask,
-} from 'ngx-mask';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
@@ -51,9 +44,6 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     MatIconModule,
     MatSortModule,
   ],
-  providers: [
-
-    provideNgxMask(),
-  ],
+  providers: [provideNgxMask()],
 })
 export class CustomersModule {}

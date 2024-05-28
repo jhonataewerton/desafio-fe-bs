@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, take } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { GetAllCustomersResponse } from 'src/app/models/customers/GetAllCustomersResponse';
 
 @Injectable({
