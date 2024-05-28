@@ -1,0 +1,40 @@
+@import "../../../../../variables.scss";
+
+h1 {
+  font-weight: 900;
+  size: 20px;
+  font-family: #{$font-family-base};
+  font-size: 20px;
+  color: #{$color-neutral-dark};
+  text-transform: uppercase;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.customer-form {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  gap: 30px;
+}
+
+.btn-action {
+  display: flex;
+  gap: 30px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Para WebKit (Chrome, Safari, Edge) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Para Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

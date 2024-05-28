@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <button
+    mat-icon-button
+    aria-label="Example icon-button with menu icon"
+    [matMenuTriggerFor]="menu"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/customers/create-customer">
+      Cadastrar Cliente
+    </button>
+    <button mat-menu-item routerLink="/customers">Listar Clientes</button>
+  </mat-menu>
+  <span>Teste FE-BS</span>
+</mat-toolbar>

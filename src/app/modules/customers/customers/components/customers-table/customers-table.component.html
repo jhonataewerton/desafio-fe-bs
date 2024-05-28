@@ -16,7 +16,7 @@
 
     <ng-container matColumnDef="cpf">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Cpf</th>
-      <td mat-cell *matCellDef="let element">{{ element.cpf }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.cpf | cpf }}</td>
     </ng-container>
 
     <ng-container matColumnDef="birthDate">

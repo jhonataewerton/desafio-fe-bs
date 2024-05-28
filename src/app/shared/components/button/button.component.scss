@@ -57,4 +57,27 @@
       color: #{$color-neutral-medium};
     }
   }
+
+  &-neutral {
+    background-color: #{$color-neutral-dark};
+    color: #f5f5f5;
+    border: none;
+
+    &:hover {
+      background-color: #{$color-neutral-medium};
+    }
+
+    &:focus {
+      background-color: #{$color-neutral-dark};
+    }
+
+    &:active {
+      background-color: #{$color-neutral-darkest};
+    }
+
+    &:disabled {
+      background-color: #{$color-neutral-lightest};
+      color: #{$color-neutral-medium};
+    }
+  }
 }

@@ -1,1 +1,96 @@
-<p>create-customer works!</p>
+<div class="container">
+  <h1>CADASTRAR NOVO CLIENTE</h1>
+  <form [formGroup]="createCustomerForm" #customerForm>
+    <div class="customer-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome e Sobrenome</mat-label>
+        <input
+          #clientName
+          matInput
+          type="text"
+          placeholder="Placeholder"
+          formControlName="clientName"
+        />
+        <mat-error *ngIf="!createCustomerForm.hasError('required')">
+          Por favor insira nome e sobrenome.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>CPF</mat-label>
+        <input
+          #cpf
+          matInput
+          placeholder="Placeholder"
+          mask="000.000.000-00"
+          formControlName="cpf"
+        />
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="!createCustomerForm.hasError('required')">
+          Por favor insira um CPF válido.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Data nascimento</mat-label>
+        <input
+          type="date"
+          #birthDate
+          matInput
+          placeholder="Placeholder"
+          formControlName="birthDate"
+        />
+        <mat-error *ngIf="!createCustomerForm.hasError('required')">
+          Só é permitido cadastro para idades entre maior que 18 e menor que 60.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Renda mensal</mat-label>
+        <input
+          currencyMask
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          #monthlyIncome
+          matInput
+          placeholder="Placeholder"
+          formControlName="monthlyIncome"
+        />
+        <mat-error *ngIf="!createCustomerForm.hasError('required')">
+          Por favor insira uma renda mensal maior que R$ 10,00.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          #email
+          matInput
+          placeholder="Placeholder"
+          formControlName="email"
+        />
+        <mat-error *ngIf="!createCustomerForm.hasError('required')">
+          Por favor insira um email válido.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="btn-action">
+    <app-button
+      [disabled]="false"
+      mat-dialog-close="s"
+      textContent="Limpar"
+      class="btn btn-neutral"
+      (click)="clearCustomerForm()"
+    ></app-button>
+
+    <app-button
+      [disabled]="!this.createCustomerForm.valid"
+      (click)="onSubmitCreateCustomerForm()"
+      mat-dialog-close="n"
+      cdkFocusInitial
+      textContent="Salvar"
+      class="btn btn-primary"
+    ></app-button>
+  </div>
+</div>

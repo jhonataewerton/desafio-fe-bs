@@ -1,0 +1,19 @@
+@import "../../../variables.scss";
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar {
+  background-color: #{$color-brand-primary-darkest};
+  color: white;
+}
+
+::ng-deep .mat-mdc-menu-content,
+.mat-mdc-menu-content .mat-mdc-menu-item .mdc-list-item__primary-text {
+  background-color: #{$color-brand-primary-darkest};
+}
+
+::ng-deep .mat-mdc-menu-content .mat-mdc-menu-item .mdc-list-item__primary-text{
+  color: white!important;
+}
