@@ -52,10 +52,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     MatSortModule,
   ],
   providers: [
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { floatLabel: 'always' },
-    },
+
     provideNgxMask(),
   ],
 })
